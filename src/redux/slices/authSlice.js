@@ -22,12 +22,15 @@ const authSlice = createSlice({
       if (exisiting) {
         exisiting.quantity++;
       } else {
-        state.cart.push({...action.payload, quantity: 1});
+        state.cart.push({ ...action.payload, quantity: 1 });
       }
     },
-    
+    deleteProduct: (state, action) => {
+      const item = state.cart.filter((el) => el.id !== action.payload);
+      state.cart = item;
+    },
   },
 });
 
-export const { login, logout, addToCart } = authSlice.actions;
+export const { login, logout, addToCart,deleteProduct } = authSlice.actions;
 export default authSlice.reducer;
