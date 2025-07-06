@@ -4,6 +4,7 @@ import DashboardPage from './pages/dashboard/DashboardPage';
 import ProductPage from './pages/dashboard/ProductPage';
 import AuthLayout from './layouts/AuthLayout';
 import SigninPage from './pages/auth/SigninPage';
+import CartPage from './pages/dashboard/CartPage';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
         path: '/products',
         element: <ProductPage />,
       },
+      {
+        path: '/cart',
+        element: <CartPage />
+      }
     ],
   },
   {
