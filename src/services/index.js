@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { TOKEN } from "@/constants";
-import store from "@/redux/store";
 import { logout } from "@/redux/slices/authSlice";
+import { store } from "@/redux/store";
 
 export const request = axios.create({
   baseURL: import.meta.env.VITE_PUBLIC_API_URL,
