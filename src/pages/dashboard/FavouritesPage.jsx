@@ -17,6 +17,8 @@ const FavouritesPage = () => {
 
   const handleFavouriteDelete = (id) => {
     dispatch(DeleteFavouriteCart(id));
+    localStorage.removeItem('likedIds');
+    setLikedIds([]);
     toast.success("Muvaffaqiyatli o'chirildi");
   };
 
@@ -34,9 +36,12 @@ const FavouritesPage = () => {
     setIsDeleteAllModalOpen(false);
   };
 
-  const confirmDeleteAll = () => {
+    const confirmDeleteAll = () => {
+      localStorage.removeItem('likedIds');
       dispatch(DeleteAllFavoriteCart());
       setIsDeleteAllModalOpen(false);
+      setLikedIds([]);
+      toast.success("Barcha sevimlilar o‘chirildi");
     };
 
   return (
