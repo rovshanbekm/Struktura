@@ -15,12 +15,21 @@ const FavouritesPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
 
+  const [likedIds, setLikedIds] = useState(() => {
+    const stored = localStorage.getItem('likedIds');
+    return stored ? JSON.parse(stored) : [];
+  });
+  
+
   const handleFavouriteDelete = (id) => {
     dispatch(DeleteFavouriteCart(id));
-    localStorage.removeItem('likedIds');
-    setLikedIds([]);
+    const updated = likedIds.filter((itemId) => itemId !== id);
+    setLikedIds(updated);
+    localStorage.setItem('likedIds', JSON.stringify(updated));
+  
     toast.success("Muvaffaqiyatli o'chirildi");
   };
+  
 
   const handleGoHome = () => {
     navigate('/'); 
@@ -76,9 +85,9 @@ const FavouritesPage = () => {
                         <span>{item.inStock} шт</span>
                       </div>
                       <div className="mt-10 flex justify-between">
-                        <Button onClick={() => handleFavouriteDelete(item.id)}>
-                          <Heart />
-                        </Button>
+                      <Button onClick={() => handleFavouriteDelete(item.id)}>
+                          <Heart color={likedIds.includes(item.id) ? 'red' : 'black'} fill={likedIds.includes(item.id) ? 'red' : 'none'} />
+                      </Button>
                       </div>
                     </div>
                   </div>
