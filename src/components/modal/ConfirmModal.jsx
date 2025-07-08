@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 export const ConfirmModal = ({ open, toggleOpen, item }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
-    dispatch(deleteProduct(item.id));
+    dispatch(deleteProduct(item.id)); 
     toggleOpen();
     toast.success("Muvaffaqiyatli o'chirildi");
   };
